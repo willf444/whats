@@ -1,26 +1,259 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9LZY4PGK9V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <title>WhatsApp Link Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+     body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
 
-  gtag('config', 'G-9LZY4PGK9V');
-</script>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
 
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-<meta http-equiv="refresh" content="0; URL='https://whatsmen.godaddysites.com/'" />
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
+        form {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            text-align: center;
+          }
+
+        .input-wrapper select,
+        .input-wrapper input {
+            margin-right: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .small-input {
+            width: 60px;
+        }
+
+        .large-input {
+            width: 110px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            background-color: #25D366;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #generated-link {
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: center;
+         }
+
+        /* Estilos personalizados para os botões */
+        .green-button {
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .top-buttons {
+            margin-bottom: 10px;
+            justify-content: center; /* Alinhando os botões ao centro */ 
+            display: flex; /* Adicionando display flex para os botões ficarem na mesma linha */
+        }
+
+        .top-buttons a {
+               margin-right: 10px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 4px;
+    text-decoration: none;
+    display: flex; /* Adicionando display flex para centralizar verticalmente o texto */
+    align-items: center; /* Centralizando o texto verticalmente */
+    justify-content: center; /* Justificando o texto horizontalmente */
+        }
+
+        .home-button {
+            background-color: #25D366;
+        }
+
+        .mission-button {
+            background-color: #3DBFB8;
+        }
+
+        .about-button {
+            background-color: #E9644B;
+        }
+
+        .contact-button {
+            background-color: #FFCD3C;
+        }
+.country-select {
+    max-width: 100px; /* Defina o valor desejado para a largura máxima */
+}
+
+        /* Estilos CSS (mantive os estilos originais) */
+        /* ... */
+
+    </style>
 </head>
-
 <body>
+    <div class="container">
+       <div class="top-buttons">
+            <a href="index.php" class="green-button home-button">Home</a>
+            <a href="missao.html" class="green-button mission-button">Missão</a>
+            <a href="sobremim.html" class="green-button about-button">Sobre Mim</a>
+            <a href="contato.html" class="green-button contact-button">Contato</a>
+        </div>
+        <img src="logozap.png" alt="WhatsApp Logo" style="display: block; margin: 0 auto; width: 100px; height: 100px;">
+        <h1>Crie seu link personalizado</h1>
+        <p>Adicione seu número:</p>
+        <form onsubmit="generateLink(event)">
+            <div class="input-wrapper">
+                <select id="country" name="country" required class="country-select">
+                    <option value="">Selecione o país</option>
+                    <option value="1">USA</option>
+                    <option value="55">Brazil</option>
+                    <option value="86">China</option>
+                    <option value="351">Portugal</option>
+                    <option value="44">UK</option>
+                </select>
+                <input type="text" id="city" name="city" maxlength="3" class="small-input" placeholder="DDD" required oninput="validateNumberInput(this)">
+                <input type="text" id="phone" name="phone" maxlength="12" class="large-input" placeholder="Seu número" required oninput="validateNumberInput(this)">
+            </div>
+            <div class="input-wrapper">
+                <input type="text" id="yourbusiness" name="yourbusiness" placeholder="Escolha o nome" required>
+            </div>
+            <br>
+            <input type="submit" value="Gere o link">
+        </form>
+        <div id="generated-link"></div>
 
+        <!-- Botão desativado temporariamente 
+        <div style="text-align: center; margin-top: 20px;">
+           
+            <a mp-mode="dftl" href="http://mpago.la/1LoAYtt" data-preference-id="427600911-5bda3a75-5c92-4d86-a9d3-290f0d4d456e" data-source="button" class="blue-ar-l-rn-none green-button" style="background-color: #25D366;">R$ 44,75 anual</a>
+        </div>-->
+        
+    <script>
+            function validateNumberInput(inputElement) {
+                const inputValue = inputElement.value;
+                const isNumber = /^\d+$/.test(inputValue);
+                const errorElement = document.getElementById(inputElement.id + '-error');
+                let error = false;
+
+                if (!isNumber) {
+                    error = true;
+                    inputElement.classList.add('error');
+                } else {
+                    error = false;
+                    inputElement.classList.remove('error');
+                }
+
+                errorElement.textContent = error ? 'Please enter a valid number' : '';
+            }
+
+            function generateLink(event) {
+                event.preventDefault();
+
+                const countrySelect = document.getElementById('country');
+                const countryCode = countrySelect.value;
+                const cityInput = document.getElementById('city');
+                const phoneInput = document.getElementById('phone');
+                const isCityValid = /^\d{1,3}$/.test(cityInput.value);
+                const isPhoneValid = /^\d+$/.test(phoneInput.value);
+
+                if (!isCityValid || !isPhoneValid) {
+                    return;
+                }
+
+                const city = cityInput.value;
+                const phone = phoneInput.value;
+                const businessName = document.getElementById('yourbusiness').value;
+
+                const formData = new FormData();
+                formData.append('country', countryCode);
+                formData.append('city', city);
+                formData.append('phone', phone);
+                formData.append('businessName', businessName);
+
+                fetch('/generate2_link.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(result => {
+                    const linkElement = document.getElementById('generated-link');
+                    linkElement.innerHTML = result;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        </script>
+    
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        function validateNumberInput(inputElement) {
+            // Função validateNumberInput
+            // ...
+        }
+
+        function generateLink(event) {
+            event.preventDefault();
+            // Restante da função generateLink
+            // ...
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Evento DOMContentLoaded (executado quando o DOM é carregado)
+            const form = document.querySelector('form');
+            form.addEventListener('submit', generateLink);
+        });
+    </script>
 </body>
-
 </html>
