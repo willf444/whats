@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <style>
         body {
-            /* Estilos CSS (mantive os estilos originais) */
-            /* ... */
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
         }
+
+        /* Estilos CSS (mantive os estilos originais) */
+        /* ... */
     </style>
 </head>
 <body>
     <div class="container">
         <div class="top-buttons">
-            <!-- Links dos botões (mantive os links originais) -->
-            <!-- ... -->
+            <a href="index.php" class="green-button home-button">Home</a>
+            <a href="missao.html" class="green-button mission-button">Missão</a>
+            <a href="sobremim.html" class="green-button about-button">Sobre Mim</a>
+            <a href="contato.html" class="green-button contact-button">Contato</a>
         </div>
         <img src="logozap.png" alt="WhatsApp Logo" style="display: block; margin: 0 auto; width: 100px; height: 100px;">
         <h1>Crie seu link personalizado</h1>
@@ -44,7 +49,6 @@
 
     <script>
         function validateNumberInput(inputElement) {
-            // Função validateNumberInput
             const inputValue = inputElement.value;
             const isNumber = /^\d+$/.test(inputValue);
             const errorElement = document.getElementById(inputElement.id + '-error');
@@ -63,7 +67,7 @@
 
         function generateLink(event) {
             event.preventDefault();
-            // Função generateLink
+
             const countrySelect = document.getElementById('country');
             const countryCode = countrySelect.value;
             const cityInput = document.getElementById('city');
@@ -79,10 +83,24 @@
             const phone = phoneInput.value;
             const businessName = document.getElementById('yourbusiness').value;
 
-            const link = `https://wa.me/${countryCode}${city}${phone}?text=${encodeURIComponent(businessName)}`;
+            const link = `https://whats.men/${encodeURIComponent(businessName)}`;
+            const waLink = `https://wa.me/${countryCode}${city}${phone}?text=${encodeURIComponent(businessName)}`;
 
             const generatedLinkElement = document.getElementById('generated-link');
-            generatedLinkElement.innerHTML = `<p>Seu link personalizado: <a href="${link}" target="_blank">${link}</a></p>`;
+            generatedLinkElement.innerHTML = `
+                <p>Seu link personalizado: <a href="${waLink}" target="_blank">${link}</a></p>
+                <button onclick="copyLink('${waLink}')">Copiar</button>
+            `;
+        }
+
+        function copyLink(link) {
+            const tempInput = document.createElement('input');
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copiado com sucesso!');
         }
     </script>
 </body>
