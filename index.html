@@ -1,108 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crie um link para o seu WhatsApp</title>
+    <title>WhatsApp Link Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
         }
 
         .container {
             max-width: 400px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
-        input[type="text"] {
-            width: 100%;
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-wrapper select,
+        .input-wrapper input {
+            margin-right: 10px;
             padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box;
+            border: 1px solid #ccc;
         }
 
-        button {
+        .small-input {
+            width: 60px;
+        }
+
+        .large-input {
+            width: 110px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        input[type="submit"] {
+            display: block;
             width: 100%;
             padding: 10px;
-            margin-top: 10px;
-            background-color: #007bff;
-            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            background-color: #25D366;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #0056b3;
+   #generated-link {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+    word-wrap: break-word; /* Adicione essa propriedade para que o texto seja quebrado em várias linhas */
+}
+
+   #generated-link a {
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f4f4f4;
+}
+
+
+        /* Estilos personalizados para os botões */
+        .green-button {
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
         }
 
-        #result {
-            margin-top: 20px;
+        .top-buttons {
+            margin-bottom: 10px;
+            justify-content: center;
+            display: flex;
+        }
+
+        .top-buttons a {
+            margin-right: 10px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            border-radius: 4px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-button {
+            background-color: #25D366;
+        }
+
+        .mission-button {
+            background-color: #3DBFB8;
+        }
+
+        .about-button {
+            background-color: #E9644B;
+        }
+
+        .contact-button {
+            background-color: #FFCD3C;
+        }
+
+        .country-select {
+            max-width: 100px;
+        }
+
+        /* Estilo personalizado para o botão "Copiar" */
+        .copy-button {
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
             text-align: center;
+            cursor: pointer;
+            background-color: #25D366; /* Mesma cor do botão "Gere o link" */
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Crie um link para o seu WhatsApp</h1>
-        <input type="text" id="phoneNumber" placeholder="Digite seu DDD e número do WhatsApp">
-        <button onclick="createWhatsAppLink()">Gerar Link</button>
-        <div id="result"></div>
+        <div class="top-buttons">
+            <a href="index.html" class="green-button home-button">Home</a>
+            <a href="missao.html" class="green-button mission-button">Missão</a>
+            <a href="sobremim.html" class="green-button about-button">Sobre Mim</a>
+            <a href="contato.html" class="green-button contact-button">Contato</a>
+        </div>
+        <img src="logozap.png" alt="WhatsApp Logo" style="display: block; margin: 0 auto; width: 100px; height: 100px;">
+        <h1>Crie seu link personalizado</h1>
+        <p>Adicione seu número:</p>
+        <form onsubmit="generateLink(event)">
+            <div class="input-wrapper">
+                <select id="country" name="country" required class="country-select">
+                    <option value="">Selecione o país</option>
+                    <option value="1">USA</option>
+                    <option value="55">Brazil</option>
+                    <option value="86">China</option>
+                    <option value="351">Portugal</option>
+                    <option value="44">UK</option>
+                </select>
+                <input type="text" id="city" name="city" maxlength="3" class="small-input" placeholder="DDD" required oninput="validateNumberInput(this)">
+                <input type="text" id="phone" name="phone" maxlength="12" class="large-input" placeholder="Seu número" required oninput="validateNumberInput(this)">
+            </div>
+            <div class="input-wrapper">
+                <input type="text" id="yourbusiness" name="yourbusiness" placeholder="Opcional - Frase de saudação">
+            </div>
+            <br>
+            <input type="submit" value="Gere o link">
+        </form>
+        <div id="generated-link"></div>
+        <!-- Div para exibir a mensagem adicional após a geração do link -->
+        <div id="link-additional-info"></div>
     </div>
 
     <script>
-        function createWhatsAppLink() {
-            var phoneNumber = document.getElementById('phoneNumber').value;
-            var apiKey = 'pk_46y4qfBNfcDn3Ep1';
-            var apiUrl = 'https://cors-anywhere.herokuapp.com/https://api.short.io/links'; // URL com serviço de proxy CORS
+        function validateNumberInput(inputElement) {
+            const inputValue = inputElement.value;
+            const isNumber = /^\d+$/.test(inputValue);
+            const errorElement = document.getElementById(inputElement.id + '-error');
+            let error = false;
 
-            var requestData = {
-                originalURL: 'https://wa.me/550' + phoneNumber,
-                domain: 'whats.men'
-            };
+            if (!isNumber) {
+                error = true;
+                inputElement.classList.add('error');
+            } else {
+                error = false;
+                inputElement.classList.remove('error');
+            }
 
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + apiKey
-                },
-                body: JSON.stringify(requestData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.shortURL) {
-                    var shortUrl = data.shortURL;
-                    var resultContainer = document.getElementById('result');
-                    resultContainer.innerHTML = '<p>Link criado com sucesso:</p><p><a href="' + shortUrl + '" target="_blank">' + shortUrl + '</a></p>';
-                } else {
-                    var resultContainer = document.getElementById('result');
-                    resultContainer.innerHTML = '<p>Erro ao criar o link. Tente novamente.</p>';
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao criar link:', error);
-                var resultContainer = document.getElementById('result');
-                resultContainer.innerHTML = '<p>Erro ao criar o link. Tente novamente.</p>';
-            });
+            errorElement.textContent = error ? 'Please enter a valid number' : '';
+        }
+
+        function generateLink(event) {
+            event.preventDefault();
+
+            const countrySelect = document.getElementById('country');
+            const countryCode = countrySelect.value;
+            const cityInput = document.getElementById('city');
+            const phoneInput = document.getElementById('phone');
+            const isCityValid = /^\d{1,3}$/.test(cityInput.value);
+            const isPhoneValid = /^\d+$/.test(phoneInput.value);
+
+            if (!isCityValid || !isPhoneValid) {
+                return;
+            }
+
+            const city = cityInput.value;
+            const phone = phoneInput.value;
+            const businessName = document.getElementById('yourbusiness').value.trim();
+            const link = businessName ? `https://wa.me/${countryCode}${city}${phone}?text=${encodeURIComponent(businessName)}` : `https://wa.me/${countryCode}${city}${phone}`;
+
+            const generatedLinkElement = document.getElementById('generated-link');
+            generatedLinkElement.innerHTML = `
+                <p>Seu link grátis: <a href="${link}" target="_blank">${link}</a></p>
+            `;
+
+            // Frase adicional após a geração do link
+            const linkAdditionalInfo = document.getElementById('link-additional-info');
+            linkAdditionalInfo.innerHTML = `
+<p style="text-align: center;">Solicite o link premium, a função é a mesma, porém fica mais bonito e personalizado, onde está escrito "seunegocio", você poderá colocar o seu nome ou de sua empresa: <a href="https://whats.men/seunegocio" target="_blank">whats.men/seunegocio</a></p>
+<p style="text-align: center;"><strong>Principais vantagens:</strong></p>
+<ul style="text-align: left; list-style-type: none; padding-left: 0;">
+    <li>✓ Fácil de lembrar</li>
+    <li>✓ Personalizado</li>
+    <li>✓ Clicou vai p/seu WhatsApp</li>
+    <li>✓ Facilita o contato</li>
+    <li>✓ Cria sua identidade visual na web</li>
+</ul>
+
+
+
+            `;
+
+          // Botão "Copiar" após a geração do link
+const copyButton = document.createElement('button');
+copyButton.classList.add('copy-button');
+copyButton.textContent = 'Copiar';
+copyButton.addEventListener('click', () => {
+    copyLink(link);
+});
+
+// Altere essa linha para centralizar o botão "Copiar"
+copyButton.style.margin = '0 auto';
+
+generatedLinkElement.appendChild(copyButton);
+
+        }
+
+        function copyLink(link) {
+            const tempInput = document.createElement('input');
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copiado com sucesso!');
         }
     </script>
 </body>
 </html>
+
 
