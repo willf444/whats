@@ -1,13 +1,107 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie um link para o seu WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-<meta http-equiv="refresh" content="0; URL='https://dan.com/buy-domain/whats.men'" />
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        h1 {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <h1>Crie um link para o seu WhatsApp</h1>
+        <input type="text" id="phoneNumber" placeholder="Digite seu DDD e número do WhatsApp">
+        <button onclick="createWhatsAppLink()">Gerar Link</button>
+        <div id="result"></div>
+    </div>
 
+    <script>
+        function createWhatsAppLink() {
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var apiKey = 'pk_46y4qfBNfcDn3Ep1';
+            var apiUrl = 'https://api.short.io/links';
+
+            var requestData = {
+                originalURL: 'https://wa.me/550' + phoneNumber,
+                domain: 'whats.men'
+            };
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + apiKey
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.shortURL) {
+                    var shortUrl = data.shortURL;
+                    var resultContainer = document.getElementById('result');
+                    resultContainer.innerHTML = '<p>Link criado com sucesso:</p><p><a href="' + shortUrl + '" target="_blank">' + shortUrl + '</a></p>';
+                } else {
+                    var resultContainer = document.getElementById('result');
+                    resultContainer.innerHTML = '<p>Erro ao criar o link. Tente novamente.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao criar link:', error);
+                var resultContainer = document.getElementById('result');
+                resultContainer.innerHTML = '<p>Erro ao criar o link. Tente novamente.</p>';
+            });
+        }
+    </script>
 </body>
-
 </html>
