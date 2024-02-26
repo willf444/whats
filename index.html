@@ -70,7 +70,7 @@
         function createWhatsAppLink() {
             var phoneNumber = document.getElementById('phoneNumber').value;
             var apiKey = 'pk_46y4qfBNfcDn3Ep1';
-            var apiUrl = 'https://api.short.io/links';
+            var apiUrl = 'https://cors-anywhere.herokuapp.com/https://api.short.io/links'; // URL com serviço de proxy CORS
 
             var requestData = {
                 originalURL: 'https://wa.me/550' + phoneNumber,
@@ -105,3 +105,4 @@
     </script>
 </body>
 </html>
+
