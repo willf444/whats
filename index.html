@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get a personalized WhatsApp link for your business with whats.men. Fast, modern, professional.">
+  <meta name="keywords" content="WhatsApp link, custom URL, business WhatsApp, personalized link, whats.men">
+  <meta name="author" content="whats.men">
+  <title>whats.men - Your Custom WhatsApp Link</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a0933 0%, #0d1a4d 100%);
+      color: #e0e0e0;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Animação de digitação */
+    .typing {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #00ffcc;
+      animation: typing 2s steps(20, end) forwards, blink 0.5s step-end infinite;
+      color: #00ffcc;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #00ffcc; }
+    }
+
+    /* Animação da mãozinha */
+    .hand {
+      display: inline-block;
+      opacity: 0;
+      animation: appear 0.1s ease-in-out 2s forwards, click 0.5s ease-in-out 2.1s forwards;
+      filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+      transform: translateY(-5px);
+    }
+    @keyframes appear {
+      to { opacity: 1; }
+    }
+    @keyframes click {
+      0% { transform: translateY(-5px) scale(1); }
+      50% { transform: translateY(-5px) scale(0.9); }
+      100% { transform: translateY(-5px) scale(1); }
+    }
+
+    /* Animação de redirecionamento */
+    .redirect {
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 2.6s forwards;
+      color: #ff4d4d;
+      text-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Botão futurista */
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(45deg, #00ffcc, #ff4d4d);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-transform: none; /* Evita uppercase indesejado */
+      white-space: nowrap; /* Garante que o texto não quebre */
+    }
+    .cta-button:hover {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+      transform: translateY(-2px);
+    }
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    /* Quadrante menor */
+    .url-container {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+  <div class="max-w-md w-full p-6 text-center">
+    <h1 class="text-4xl font-bold mb-4">whats.men</h1>
+    <p class="text-lg mb-6">Launch your business with a custom WhatsApp link.</p>
+    
+    <!-- Demonstração da URL -->
+    <div class="url-container mb-6">
+      <p class="text-lg font-mono inline-flex items-center">
+        whats.men/<span class="typing">yourbusiness</span>
+        <span class="hand cursor-pointer">👆</span>
+      </p>
+      <p class="text-sm redirect mt-2">Redirects to your WhatsApp!</p>
+    </div>
+    
+    <!-- Botão CTA -->
+    <a href="mailto:adm@whats.men?subject=Request%20for%20Custom%20WhatsApp%20Link&body=Hello,%20I%20came%20through%20your%20site,%20whats.men,%20and%20I%20want%20a%20personalized%20WhatsApp%20link%20for%20my%20business." 
+       class="cta-button">
+      Get Yours Now
+    </a>
+    
+    <!-- Texto de suporte -->
+    <p class="mt-6 text-sm opacity-80">Ideal for businesses, creators, and more. <br> Contact us at <a href="mailto:adm@whats.men" class="underline hover:text-cyan-300">adm@whats.men</a>.</p>
+  </div>
+</body>
+</html>
